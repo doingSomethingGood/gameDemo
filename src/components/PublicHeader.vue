@@ -54,6 +54,7 @@
         font-size 14px
         .resource-number
           font-size 14px
+          margin-left 5px
     .resource-attack
       height 30px
       line-height 30px
@@ -62,5 +63,6 @@
       font-size 14px
       .resource-number
         font-size 14px
+        margin-left 5px
 
 </style>

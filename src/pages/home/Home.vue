@@ -9,7 +9,7 @@
 <script>
   import PublicHeader from 'components/PublicHeader'
   import HomeContainer from 'home/homeComponents/HomeContainer'
-  import HomeFoot from 'home/homeComponents/HomeFoot'
+  import HomeFoot from 'components/HomeFoot'
 
   export default {
     name: "Home",
