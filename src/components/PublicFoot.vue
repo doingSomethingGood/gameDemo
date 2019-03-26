@@ -1,18 +1,42 @@
 <template>
   <div class="container">
-    <div class="foot-button" @click="footButtonClick" :class="{'clicked':isClicked[0]}">
+    <div
+      class="foot-button"
+      @click="footButtonClick"
+      :class="{'clicked':isClicked[0]}"
+    >
       <span class="iconfont foot-icons" :class="{'change-color':isClicked[0]}" :data-index="1">&#xe60b;</span>
       <span class="foot-string" :class="{'change-color':isClicked[0]}" :data-index="1">角色</span>
     </div>
-    <div class="foot-button" @click="footButtonClick" :class="{'clicked':isClicked[1]}">
+
+
+    <div
+      class="foot-button"
+      :class="{'clicked':isClicked[1]}"
+      @click="footButtonClick"
+      :equipmentList="this.equipmentsList"
+    >
       <span class="iconfont foot-icons" :class="{'change-color':isClicked[1]}">&#xe659;</span>
       <span class="foot-string" :class="{'change-color':isClicked[1]}">技能</span>
     </div>
-    <div class="foot-button" @click="footButtonClick" :class="{'clicked':isClicked[2]}">
+
+
+    <div
+      class="foot-button"
+      :class="{'clicked':isClicked[2]}"
+      @click="footButtonClick"
+      :equipmentList="this.equipmentsList"
+    >
       <span class="iconfont foot-icons" :class="{'change-color':isClicked[2]}">&#xe615;</span>
       <span class="foot-string" :class="{'change-color':isClicked[2]}">装备</span>
     </div>
-    <div class="foot-button" @click="footButtonClick" :class="{'clicked':isClicked[3]}">
+
+
+    <div
+      class="foot-button"
+      :class="{'clicked':isClicked[3]}"
+      @click="footButtonClick"
+    >
       <span class="iconfont foot-icons" :class="{'change-color':isClicked[3]}">&#xe606;</span>
       <span class="foot-string" :class="{'change-color':isClicked[3]}">背包</span>
     </div>
@@ -21,7 +45,11 @@
 
 <script>
   export default {
-    name: "HomeFoot",
+    name: "PublicFoot",
+    props: {
+      equipmentsList: Array,
+      footList:Array
+    },
     data() {
       return {
         buttonList: {
@@ -38,12 +66,20 @@
         if (this.clicked === _thisButton) {
           this.isClicked = [0, 0, 0, 0];
           this.clicked = '';
+          this.$emit('footListChange', this.isClicked);
           return
         }
         let _button = this.buttonList[_thisButton];
         this.isClicked = [0, 0, 0, 0];
         this.isClicked[_button] = 1;
         this.clicked = _thisButton;
+        this.$emit('footListChange', this.isClicked);
+      }
+    },
+    watch:{
+      footList(){
+        debugger
+        this.isClicked = this.footList;
       }
     }
   }

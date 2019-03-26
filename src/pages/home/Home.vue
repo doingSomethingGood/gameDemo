@@ -1,22 +1,71 @@
 <template>
   <div>
     <public-header></public-header>
-    <home-container></home-container>
-    <home-foot></home-foot>
+    <home-container
+      :footList="this.footList"
+      @footListChange="footListChange"
+    >
+    </home-container>
+    <public-foot
+      :equipmentList="equipmentsList"
+      :footList="this.footList"
+      @footListChange="footListChange"
+    ></public-foot>
   </div>
 </template>
 
 <script>
   import PublicHeader from 'components/PublicHeader'
   import HomeContainer from 'home/homeComponents/HomeContainer'
-  import HomeFoot from 'components/HomeFoot'
+  import PublicFoot from 'components/PublicFoot'
+  import axios from 'axios'
+  import {mapState} from 'vuex'
 
   export default {
     name: "Home",
     components: {
       PublicHeader,
       HomeContainer,
-      HomeFoot
+      PublicFoot
+    },
+    data() {
+      return {
+        equipmentsList: [],
+        skillsList: [],
+        footList: []
+      }
+    },
+    methods: {
+      footListChange(_footList) {
+        debugger;
+        this.footList = _footList;
+      },
+
+
+      getEquipmentsData() {
+        axios.get('/api/equipments.json').then(this.getEquipmentsDataSucc);
+        axios.get('/api/skills.json').then(this.getSkillsDataSucc);
+      },
+      getEquipmentsDataSucc(response) {
+        if (response.status === 200) {
+          this.equipmentsList = response.data;
+          console.log(this.equipmentsList)
+        }
+      },
+      getSkillsDataSucc(response) {
+        if (response.status === 200) {
+          this.skillsList = response.data;
+          console.log(this.skillsList)
+        }
+      }
+    },
+    mounted() {
+      this.getEquipmentsData()
+    },
+    computed: {
+      ...mapState(['playerAttack']),
+      ...mapState(['playerMoney']),
+      ...mapState(['playerExp'])
     }
   }
 </script>

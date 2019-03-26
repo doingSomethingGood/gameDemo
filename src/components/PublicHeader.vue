@@ -3,16 +3,16 @@
     <div class="header-avatar"></div>
     <div class="resource-attack">
       <span class="iconfont resource-icon">&#xe636;</span>
-      <span class="resource-number">22222</span>
+      <span class="resource-number">{{this.playerAttack}}</span>
     </div>
     <div class="resources">
       <div class="resource">
         <span class="iconfont resource-icon">&#xe641;</span>
-        <span class="resource-number">333333</span>
+        <span class="resource-number">{{this.playerMoney}}</span>
       </div>
       <div class="resource">
         <span class="iconfont resource-icon">&#xe603;</span>
-        <span class="resource-number">555555</span>
+        <span class="resource-number">{{this.playerExp}}</span>
       </div>
     </div>
 
@@ -20,8 +20,14 @@
 </template>
 
 <script>
+  import {mapState} from 'vuex'
   export default {
-    name: "Header"
+    name: "Header",
+    computed:{
+      ...mapState(['playerAttack']),
+      ...mapState(['playerMoney']),
+      ...mapState(['playerExp'])
+    }
   }
 </script>
 

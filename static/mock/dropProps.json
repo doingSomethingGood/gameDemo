@@ -1,0 +1,10 @@
+[
+  {"id":"1","name":"经验","relations":"0","drop_count":"100n"},
+  {"id":"2","name":"金币","relations":"0","drop_count":"200n"},
+  {"id":"3","name":"碎片1","relations":"1","drop_count":"random*n-6"},
+  {"id":"4","name":"碎片2","relations":"2","drop_count":"random*n-6"},
+  {"id":"5","name":"碎片3","relations":"3","drop_count":"random*n-6"},
+  {"id":"6","name":"碎片4","relations":"4","drop_count":"random*n-6"},
+  {"id":"7","name":"碎片5","relations":"5","drop_count":"random*n-6"},
+  {"id":"8","name":"碎片6","relations":"6","drop_count":"random*n-5"}
+]
