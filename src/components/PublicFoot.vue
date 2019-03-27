@@ -3,85 +3,76 @@
     <div
       class="foot-button"
       @click="footButtonClick"
-      :class="{'clicked':isClicked[0]}"
+      :class="{'clicked':this.playerUiShow===1}"
     >
-      <span class="iconfont foot-icons" :class="{'change-color':isClicked[0]}" :data-index="1">&#xe60b;</span>
-      <span class="foot-string" :class="{'change-color':isClicked[0]}" :data-index="1">角色</span>
+      <span class="iconfont foot-icons" :class="{'change-color':this.playerUiShow===1}">&#xe60b;</span>
+      <span class="foot-string" :class="{'change-color':this.playerUiShow===1}" :data-index="1">角色</span>
     </div>
-
 
     <div
       class="foot-button"
-      :class="{'clicked':isClicked[1]}"
+      :class="{'clicked':this.playerUiShow===2}"
       @click="footButtonClick"
       :equipmentList="this.equipmentsList"
     >
-      <span class="iconfont foot-icons" :class="{'change-color':isClicked[1]}">&#xe659;</span>
-      <span class="foot-string" :class="{'change-color':isClicked[1]}">技能</span>
+      <span class="iconfont foot-icons" :class="{'change-color':this.playerUiShow===2}">&#xe659;</span>
+      <span class="foot-string" :class="{'change-color':this.playerUiShow===2}">技能</span>
     </div>
-
 
     <div
       class="foot-button"
-      :class="{'clicked':isClicked[2]}"
+      :class="{'clicked':this.playerUiShow===3}"
       @click="footButtonClick"
       :equipmentList="this.equipmentsList"
     >
-      <span class="iconfont foot-icons" :class="{'change-color':isClicked[2]}">&#xe615;</span>
-      <span class="foot-string" :class="{'change-color':isClicked[2]}">装备</span>
+      <span class="iconfont foot-icons" :class="{'change-color':this.playerUiShow===3}">&#xe615;</span>
+      <span class="foot-string" :class="{'change-color':this.playerUiShow===3}">装备</span>
     </div>
-
 
     <div
       class="foot-button"
-      :class="{'clicked':isClicked[3]}"
+      :class="{'clicked':this.playerUiShow===4}"
       @click="footButtonClick"
     >
-      <span class="iconfont foot-icons" :class="{'change-color':isClicked[3]}">&#xe606;</span>
-      <span class="foot-string" :class="{'change-color':isClicked[3]}">背包</span>
+      <span class="iconfont foot-icons" :class="{'change-color':this.playerUiShow===4}">&#xe606;</span>
+      <span class="foot-string" :class="{'change-color':this.playerUiShow===4}">背包</span>
     </div>
   </div>
 </template>
 
 <script>
+  import {mapState, mapMutations} from 'vuex'
+
   export default {
     name: "PublicFoot",
     props: {
       equipmentsList: Array,
-      footList:Array
     },
     data() {
       return {
         buttonList: {
-          '角色': 0, '技能': 1, '装备': 2, '背包': 3
+          '角色': 1, '技能': 2, '装备': 3, '背包': 4
         },
-        isClicked: [0, 0, 0, 0],
-        clicked: ''
+        lastClick: null
       }
+    },
+    computed: {
+      ...mapState(['playerUiShow'])
     },
     methods: {
       footButtonClick(e) {
         debugger;
         let _thisButton = e.currentTarget.innerText.substr(2, 4);
-        if (this.clicked === _thisButton) {
-          this.isClicked = [0, 0, 0, 0];
-          this.clicked = '';
-          this.$emit('footListChange', this.isClicked);
-          return
+        let _clicked = this.buttonList[_thisButton];
+        if (_clicked === this.lastClick && !(this.playerUiShow === -1)) {
+          _clicked = -1;
+          this.lastClick = null
         }
-        let _button = this.buttonList[_thisButton];
-        this.isClicked = [0, 0, 0, 0];
-        this.isClicked[_button] = 1;
-        this.clicked = _thisButton;
-        this.$emit('footListChange', this.isClicked);
-      }
+        this.lastClick = _clicked;
+        this.changePlayerUiShow(_clicked);
+      },
+      ...mapMutations(['changePlayerUiShow'])
     },
-    watch:{
-      footList(){
-        debugger
-        this.isClicked = this.footList;
-      }
-    }
   }
 </script>
 
@@ -116,6 +107,4 @@
         color rgba(244, 154, 26, .9)
     .clicked
       box-shadow -5px -5px 5px rgba(41, 41, 41, .9)
-
-
 </style>

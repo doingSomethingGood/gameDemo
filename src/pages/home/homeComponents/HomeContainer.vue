@@ -1,17 +1,32 @@
 <template>
   <div>
 
-    <div v-show="this.showList[0]" class="home-container">
+    <div v-show="this.playerUiShow === -1" class="home-container">
       <div class="home-container-button-first">看看自己怎么样</div>
-      <div class="home-container-button-second">打个怪物试试</div>
+      <router-link
+        class="home-container-button-second"
+        to="/battle"
+      >
+        打个怪物试试
+      </router-link>
     </div>
 
-    <div v-show="this.showList[2]" style="display: none" class="public-container-all">
+    <div v-show="this.playerUiShow === 1" class="public-container-all">
+      <div class="public-container">
+        我是角色展示界面
+      </div>
+      <div class="public-closebtn" @click="closebtn">点击关闭</div>
+    </div>
+
+    <div v-show="this.playerUiShow === 2" class="public-container-all">
       <div class="public-container">
         <ul>
           <li class="public-item-desc">
             <div class="public-icon"></div>
             <div class="public-desc">
+              <div class="public-name-desc">
+                <span>天王破敌枪</span>
+              </div>
               <div class="public-attack-desc">
                 <span>攻击力：</span>
                 <span>10</span>
@@ -28,6 +43,14 @@
               <span class="public-level-up-2">升级</span>
             </div>
           </li>
+        </ul>
+      </div>
+      <div class="public-closebtn" @click="closebtn">点击关闭</div>
+    </div>
+
+    <div v-show="this.playerUiShow === 3" class="public-container-all">
+      <div class="public-container">
+        <ul>
           <li class="public-item-desc">
             <div class="public-icon"></div>
             <div class="public-desc">
@@ -52,11 +75,23 @@
       <div class="public-closebtn" @click="closebtn">点击关闭</div>
     </div>
 
+    <div v-show="this.playerUiShow === 4" class="public-container-all">
+      <div class="public-container">
+        <ul>
+          <li class="public-item-desc">
+            <div class="public-icon"></div>
+          </li>
+        </ul>
+      </div>
+      <div class="public-closebtn" @click="closebtn">点击关闭</div>
+    </div>
 
   </div>
 </template>
 
 <script>
+  import {mapState, mapMutations} from 'vuex'
+
   export default {
     name: "HomeContainer",
     props: {
@@ -64,46 +99,19 @@
     },
     data() {
       return {
-        showList: {
-          0: true,
-          1: false,
-          2: false,
-          3: false,
-          4: false
-        },
+
       }
+    },
+    computed: {
+      ...mapState(['playerUiShow'])
     },
     methods: {
       closebtn() {
         debugger;
-        this.showList = {
-          0: true,
-          1: false,
-          2: false,
-          3: false,
-          4: false
-        };
-      }
-    },
-    computed:{
-
-    },
-    watch: {
-      footList() {
-        debugger;
-        // let _newFootList = [0,0,0,0];
-        if (this.footList) {
-          for (let i = 0; i < this.footList.length; i++) {
-            if (this.footList[i] === 1) {
-              this.showList[i + 1] = true;
-              this.showList[0] = false;
-            }
-          }
-        }
-        this.$emit('footListChange', this.footList);
-      }
+        this.changePlayerUiShow(-1);
+      },
+      ...mapMutations(['changePlayerUiShow'])
     }
-
   }
 </script>
 
@@ -137,9 +145,13 @@
         .public-desc
           display inline-block
           margin-left 8px
+          .public-name-desc
+            position absolute
+            top 10px
+            left 65px
           .public-attack-desc
             position absolute
-            top 20px
+            top 25px
             left 65px
           .public-level-desc
             position absolute
@@ -150,7 +162,7 @@
           position absolute
           top 30px
           left 262px
-          .public-level-up-1, .level-up-2
+          .public-level-up-1, .public-level-up-2
             display inline-block
             padding 4px
             border 1px dashed rgba(31, 24, 14, 0.6)
@@ -173,6 +185,7 @@
     background #ccc
     border-radius 5px
     .home-container-button-first, .home-container-button-second
+      display block
       height 50px
       padding 10px
       line-height 50px

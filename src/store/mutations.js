@@ -8,16 +8,20 @@ export default {
   },
   changePlayerMoney(state, playerMoney) {
     state.playerMoney = playerMoney;
-    // try {
-    //   localStorage.playerMoney = playerMoney;
-    // } catch (e) {
-    // }
   },
   changePlayerExp(state, playerExp) {
-    state.playerExp= playerExp;
-    // try {
-    //   localStorage.playerExp = playerExp;
-    // } catch (e) {
-    // }
+    state.playerExp = playerExp;
+  },
+  changePlayerUiShow(state, playerUiShow) {
+    state.playerUiShow = playerUiShow;
+  },
+  changeEnemyLevel(state, enemyLevel) {
+    state.enemyLevel = enemyLevel;
+  },
+  changeEnemyBlood(state, enemyBlood) {
+    state.enemyBlood = enemyBlood;
+  },
+  changeStartAttackFlag(state, startAttackFlag) {
+    state.startAttackFlag = startAttackFlag;
   }
 }

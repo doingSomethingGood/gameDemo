@@ -1,16 +1,8 @@
 <template>
   <div>
     <public-header></public-header>
-    <home-container
-      :footList="this.footList"
-      @footListChange="footListChange"
-    >
-    </home-container>
-    <public-foot
-      :equipmentList="equipmentsList"
-      :footList="this.footList"
-      @footListChange="footListChange"
-    ></public-foot>
+    <home-container></home-container>
+    <public-foot :equipmentList="equipmentsList"></public-foot>
   </div>
 </template>
 
@@ -31,16 +23,10 @@
     data() {
       return {
         equipmentsList: [],
-        skillsList: [],
-        footList: []
+        skillsList: []
       }
     },
     methods: {
-      footListChange(_footList) {
-        debugger;
-        this.footList = _footList;
-      },
-
 
       getEquipmentsData() {
         axios.get('/api/equipments.json').then(this.getEquipmentsDataSucc);
