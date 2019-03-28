@@ -1,8 +1,8 @@
 [
-  {"id":"1","name":"天王破敌枪","description":"天王破敌枪"},
-  {"id":"2","name":"五庄八挂阵","description":"五庄八挂阵"},
-  {"id":"3","name":"广寒紫月箭","description":"广寒紫月箭"},
-  {"id":"4","name":"凌烟飘渺术","description":"凌烟飘渺术"},
-  {"id":"5","name":"狮驼碎金吼","description":"狮驼碎金吼"},
-  {"id":"6","name":"普陀伏魔术","description":"普陀伏魔术"}
+  {"id":"skill1","name":"天王破敌枪","description":"天王破敌枪"},
+  {"id":"skill2","name":"五庄八挂阵","description":"五庄八挂阵"},
+  {"id":"skill3","name":"广寒紫月箭","description":"广寒紫月箭"},
+  {"id":"skill4","name":"凌烟飘渺术","description":"凌烟飘渺术"},
+  {"id":"skill5","name":"狮驼碎金吼","description":"狮驼碎金吼"},
+  {"id":"skill6","name":"普陀伏魔术","description":"普陀伏魔术"}
 ]

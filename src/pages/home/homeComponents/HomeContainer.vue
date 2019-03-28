@@ -21,26 +21,28 @@
     <div v-show="this.playerUiShow === 2" class="public-container-all">
       <div class="public-container">
         <ul>
-          <li class="public-item-desc">
-            <div class="public-icon"></div>
+          <li class="public-item-desc" v-for="(skill, key, index) of this.playerSkills" :key="key">
+            <div class="public-icon">
+              <img class="public-icon-img" :src="skill.icon" alt="">
+            </div>
             <div class="public-desc">
               <div class="public-name-desc">
-                <span>天王破敌枪</span>
+                <span>{{skill.name}}</span>
               </div>
               <div class="public-attack-desc">
                 <span>攻击力：</span>
-                <span>10</span>
+                <span>{{skill.attack}}</span>
               </div>
               <div class="public-level-desc">
                 <span>阶别：</span>
-                <span>0</span>
+                <span>{{skill.stage}}</span>
                 <span>等级：</span>
-                <span>0</span>
+                <span>{{skill.level}}</span>
               </div>
             </div>
             <div class="public-level-up">
-              <span class="public-level-up-1">升阶</span>
-              <span class="public-level-up-2">升级</span>
+              <span class="public-level-up-1" @click="stageUpButton('skill',key)">升阶</span>
+              <span class="public-level-up-2" @click="levelUpButton('skill',key)">升级</span>
             </div>
           </li>
         </ul>
@@ -51,18 +53,23 @@
     <div v-show="this.playerUiShow === 3" class="public-container-all">
       <div class="public-container">
         <ul>
-          <li class="public-item-desc">
-            <div class="public-icon"></div>
+          <li class="public-item-desc" v-for="(equipment, key, index) of this.equipments">
+            <div class="public-icon">
+              <img class="public-icon-img" :src="equipment.icon" alt="">
+            </div>
             <div class="public-desc">
+              <div class="public-name-desc">
+                <span>{{equipment.name}}</span>
+              </div>
               <div class="public-attack-desc">
                 <span>攻击力：</span>
-                <span>10</span>
+                <span>{{equipment.attack}}</span>
               </div>
               <div class="public-level-desc">
                 <span>阶别：</span>
-                <span>0</span>
+                <span>{{equipment.stage}}</span>
                 <span>等级：</span>
-                <span>0</span>
+                <span>{{equipment.level}}</span>
               </div>
             </div>
             <div class="public-level-up">
@@ -94,23 +101,40 @@
 
   export default {
     name: "HomeContainer",
-    props: {
-      footList: Array
-    },
+    props: {},
     data() {
-      return {
-
-      }
+      return {}
     },
     computed: {
-      ...mapState(['playerUiShow'])
+      ...mapState(['playerUiShow']),
+      ...mapState(['playerSkills']),
+      ...mapState(['equipments'])
     },
     methods: {
+      ...mapMutations(['changePlayerUiShow']),
+      ...mapMutations(['changePlayerSkills']),
+      ...mapMutations(['changeEquipments']),
       closebtn() {
-        debugger;
         this.changePlayerUiShow(-1);
       },
-      ...mapMutations(['changePlayerUiShow'])
+      stageUpButton(type, key) {
+        let dataBean = {};
+        if (type === 'skill') {
+          dataBean.skills = key;
+          dataBean.property = 'stage';
+          dataBean.levelUp = 1;
+          this.changePlayerSkills(dataBean);
+        }
+      },
+      levelUpButton(type, key) {
+        let dataBean = {};
+        if (type === 'skill') {
+          dataBean.skills = key;
+          dataBean.property = 'level';
+          dataBean.levelUp = 1;
+          this.changePlayerSkills(dataBean);
+        }
+      }
     }
   }
 </script>
@@ -140,8 +164,11 @@
           left 5px
           width 50px
           height 50px
-          border 1px solid red
+          border 1px dashed black
           background #cacaca
+          .public-icon-img
+            width 40px
+            margin 5px
         .public-desc
           display inline-block
           margin-left 8px

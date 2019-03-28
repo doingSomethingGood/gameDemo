@@ -1,8 +1,8 @@
 [
-  {"id":"1","name":"天王破敌枪","description":"天王破敌枪"},
-  {"id":"2","name":"五庄八挂阵","description":"五庄八挂阵"},
-  {"id":"3","name":"广寒紫月靴","description":"广寒紫月靴"},
-  {"id":"4","name":"凌烟飘渺甲","description":"凌烟飘渺甲"},
-  {"id":"5","name":"狮驼碎金拳","description":"狮驼碎金拳"},
-  {"id":"6","name":"普陀护灵盔","description":"普陀护灵盔"}
+  {"id":"1","name":"武器","description":"武器"},
+  {"id":"2","name":"头盔","description":"头盔"},
+  {"id":"3","name":"护甲","description":"护甲"},
+  {"id":"4","name":"手套","description":"手套"},
+  {"id":"5","name":"护腿","description":"护腿"},
+  {"id":"6","name":"鞋子","description":"鞋子"}
 ]

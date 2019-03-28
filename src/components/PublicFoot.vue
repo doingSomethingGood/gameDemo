@@ -61,7 +61,6 @@
     },
     methods: {
       footButtonClick(e) {
-        debugger;
         let _thisButton = e.currentTarget.innerText.substr(2, 4);
         let _clicked = this.buttonList[_thisButton];
         if (_clicked === this.lastClick && !(this.playerUiShow === -1)) {

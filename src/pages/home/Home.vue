@@ -2,7 +2,7 @@
   <div>
     <public-header></public-header>
     <home-container></home-container>
-    <public-foot :equipmentList="equipmentsList"></public-foot>
+    <public-foot></public-foot>
   </div>
 </template>
 
@@ -22,8 +22,6 @@
     },
     data() {
       return {
-        equipmentsList: [],
-        skillsList: []
       }
     },
     methods: {

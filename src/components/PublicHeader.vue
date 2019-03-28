@@ -20,11 +20,12 @@
 </template>
 
 <script>
-  import {mapState} from 'vuex'
+  import {mapState, mapGetters} from 'vuex'
+
   export default {
     name: "Header",
-    computed:{
-      ...mapState(['playerAttack']),
+    computed: {
+      ...mapGetters(['playerAttack']),
       ...mapState(['playerMoney']),
       ...mapState(['playerExp'])
     }
@@ -41,7 +42,7 @@
     position relative
     height 60px
     padding 5px
-    background rgba(31,24,14,.6)
+    background rgba(31, 24, 14, .6)
     border-radius 5px
     .header-avatar
       float left
