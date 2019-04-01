@@ -3,7 +3,7 @@ let playerMoney = 1000000000;
 let playerExp = 0;
 let playerUiShow = -1;
 let enemyLevel = 1;
-let enemyBlood = 100;
+let enemyBlood = 500;
 let startAttackFlag = false;
 let playerSkills = {
   skill1: {

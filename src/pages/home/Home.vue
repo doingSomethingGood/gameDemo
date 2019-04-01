@@ -10,6 +10,7 @@
   import PublicHeader from 'components/PublicHeader'
   import HomeContainer from 'home/homeComponents/HomeContainer'
   import PublicFoot from 'components/PublicFoot'
+  // import FloatingWindow from 'components/FloatingWindow'
   import axios from 'axios'
   import {mapState} from 'vuex'
 

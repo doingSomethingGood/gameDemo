@@ -1,119 +1,135 @@
 <template>
   <div>
-
-    <div v-show="this.playerUiShow === -1" class="home-container">
-      <div class="home-container-button-first">看看自己怎么样</div>
-      <router-link
-        class="home-container-button-second"
-        to="/battle"
-      >
-        打个怪物试试
-      </router-link>
-    </div>
-
-    <div v-show="this.playerUiShow === 1" class="public-container-all">
-      <div class="public-container">
-        我是角色展示界面
+    <div>
+      <div v-show="this.playerUiShow === -1" class="home-container">
+        <div class="home-container-button-first">看看自己怎么样</div>
+        <router-link
+          class="home-container-button-second"
+          to="/battle"
+        >
+          打个怪物试试
+        </router-link>
       </div>
-      <div class="public-closebtn" @click="closebtn">点击关闭</div>
-    </div>
 
-    <div v-show="this.playerUiShow === 2" class="public-container-all">
-      <div class="public-container">
-        <ul>
-          <li class="public-item-desc" v-for="(skill, key, index) of this.playerSkills" :key="key">
-            <div class="public-icon">
-              <img class="public-icon-img" :src="skill.icon" alt="">
-            </div>
-            <div class="public-desc">
-              <div class="public-name-desc">
-                <span>{{skill.name}}</span>
-              </div>
-              <div class="public-attack-desc">
-                <span>攻击力：</span>
-                <span>{{skill.attack}}</span>
-              </div>
-              <div class="public-level-desc">
-                <span>阶别：</span>
-                <span>{{skill.stage}}</span>
-                <span>等级：</span>
-                <span>{{skill.level}}</span>
-              </div>
-            </div>
-            <div class="public-level-up">
-              <span class="public-level-up-1" @click="stageUpButton('skill',key)">升阶</span>
-              <span class="public-level-up-2" @click="levelUpButton('skill',key)">升级</span>
-            </div>
-          </li>
-        </ul>
+      <div v-show="this.playerUiShow === 1" class="public-container-all">
+        <div class="public-container">
+          我是角色展示界面
+        </div>
+        <div class="public-closebtn" @click="closebtn">点击关闭</div>
       </div>
-      <div class="public-closebtn" @click="closebtn">点击关闭</div>
-    </div>
 
-    <div v-show="this.playerUiShow === 3" class="public-container-all">
-      <div class="public-container">
-        <ul>
-          <li class="public-item-desc" v-for="(equipment, key, index) of this.equipments">
-            <div class="public-icon">
-              <img class="public-icon-img" :src="equipment.icon" alt="">
-            </div>
-            <div class="public-desc">
-              <div class="public-name-desc">
-                <span>{{equipment.name}}</span>
+      <div v-show="this.playerUiShow === 2" class="public-container-all">
+        <div class="public-container">
+          <ul>
+            <li class="public-item-desc" v-for="(skill, key, index) of this.playerSkills" :key="key">
+              <div class="public-icon">
+                <img class="public-icon-img" :src="skill.icon" alt="">
               </div>
-              <div class="public-attack-desc">
-                <span>攻击力：</span>
-                <span>{{equipment.attack}}</span>
+              <div class="public-desc">
+                <div class="public-name-desc">
+                  <span>{{skill.name}}</span>
+                </div>
+                <div class="public-attack-desc">
+                  <span>攻击力：</span>
+                  <span>{{skill.attack}}</span>
+                </div>
+                <div class="public-level-desc">
+                  <span>阶别：</span>
+                  <span>{{skill.stage}}</span>
+                  <span>等级：</span>
+                  <span>{{skill.level}}</span>
+                </div>
               </div>
-              <div class="public-level-desc">
-                <span>阶别：</span>
-                <span>{{equipment.stage}}</span>
-                <span>等级：</span>
-                <span>{{equipment.level}}</span>
+              <div class="public-level-up">
+                <span class="public-level-up-1" @click="stageUpButton('skill',key)">升阶</span>
+                <span class="public-level-up-2" @click="levelUpButton('skill',key)">升级</span>
               </div>
-            </div>
-            <div class="public-level-up">
-              <span class="public-level-up-1">升阶</span>
-              <span class="public-level-up-2">升级</span>
-            </div>
-          </li>
-        </ul>
+            </li>
+          </ul>
+        </div>
+        <div class="public-closebtn" @click="closebtn">点击关闭</div>
       </div>
-      <div class="public-closebtn" @click="closebtn">点击关闭</div>
-    </div>
 
-    <div v-show="this.playerUiShow === 4" class="public-container-all">
-      <div class="public-container">
-        <ul>
-          <li class="public-item-desc">
-            <div class="public-icon"></div>
-          </li>
-        </ul>
+      <div v-show="this.playerUiShow === 3" class="public-container-all">
+        <div class="public-container">
+          <ul>
+            <li class="public-item-desc" v-for="(equipment, key, index) of this.equipments">
+              <div class="public-icon">
+                <img class="public-icon-img" :src="equipment.icon" alt="">
+              </div>
+              <div class="public-desc">
+                <div class="public-name-desc">
+                  <span>{{equipment.name}}</span>
+                </div>
+                <div class="public-attack-desc">
+                  <span>攻击力：</span>
+                  <span>{{equipment.attack}}</span>
+                </div>
+                <div class="public-level-desc">
+                  <span>阶别：</span>
+                  <span>{{equipment.stage}}</span>
+                  <span>等级：</span>
+                  <span>{{equipment.level}}</span>
+                </div>
+              </div>
+              <div class="public-level-up">
+                <span class="public-level-up-1" @click="stageUpButton('equipment',key)">升阶</span>
+                <span class="public-level-up-2" @click="levelUpButton('equipment',key)">升级</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="public-closebtn" @click="closebtn">点击关闭</div>
       </div>
-      <div class="public-closebtn" @click="closebtn">点击关闭</div>
+
+      <div v-show="this.playerUiShow === 4" class="public-container-all">
+        <div class="public-container">
+          <ul>
+            <li class="public-item-desc">
+              <div class="public-icon"></div>
+            </li>
+          </ul>
+        </div>
+        <div class="public-closebtn" @click="closebtn">点击关闭</div>
+      </div>
+
     </div>
 
+    <floating-window :floating="this.floating" @changeShowStated="changeShowState"></floating-window>
   </div>
+
 </template>
 
 <script>
   import {mapState, mapMutations} from 'vuex'
+  import publicJs from '../../../components/publicJs'
+  import FloatingWindow from '../../../components/FloatingWindow'
 
   export default {
     name: "HomeContainer",
+    components: {
+      FloatingWindow
+    },
     props: {},
     data() {
-      return {}
+      return {
+        floating: {
+          floatingShow: false,
+          floatingMessage: '升级成功'
+        }
+      }
     },
     computed: {
       ...mapState(['playerUiShow']),
       ...mapState(['playerSkills']),
-      ...mapState(['equipments'])
+      ...mapState(['equipments']),
+      ...mapState(['playerMoney'])
     },
     methods: {
       ...mapMutations(['changePlayerUiShow']),
       ...mapMutations(['changePlayerSkills']),
       ...mapMutations(['changeEquipments']),
+      ...mapMutations(['changePlayerMoney']),
       closebtn() {
         this.changePlayerUiShow(-1);
       },
@@ -132,9 +148,18 @@
           dataBean.skills = key;
           dataBean.property = 'level';
           dataBean.levelUp = 1;
+          let _cost = publicJs.getSkillLevelUpCost(this.$store.state, key);
           this.changePlayerSkills(dataBean);
+          this.changePlayerMoney(-_cost);
+          this.floating.floatingShow = true;
         }
+      },
+
+      changeShowState(e){
+        this.floating.floatingShow = false;
       }
+
+
     }
   }
 </script>

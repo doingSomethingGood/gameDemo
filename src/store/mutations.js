@@ -7,7 +7,10 @@ export default {
     // }
   },
   changePlayerMoney(state, playerMoney) {
-    state.playerMoney = playerMoney;
+    state.playerMoney += playerMoney;
+    if(state.playerMoney <= 0){
+      state.playerMoney = 0;
+    }
   },
   changePlayerExp(state, playerExp) {
     state.playerExp = playerExp;
@@ -31,28 +34,27 @@ export default {
       _property = dataBean.property,
       _levelUp = dataBean.levelUp;
     playerSkills[_skill][_property] += _levelUp;
-
     if (_property === 'level') {
       playerSkills[_skill]['attack'] += playerSkills[_skill]['level'] * 1.5;
-    }else if(_property === 'stage'){
+    } else if (_property === 'stage') {
       playerSkills[_skill]['attack'] += playerSkills[_skill]['stage'] * 10;
     }
 
   },
   changeEquipments(state, dataBean) {
-    let playerSkills = state.playerSkills;
+    let equipments = state.equipments;
     let _skill = dataBean.skills,
       _property = dataBean.property,
       _levelUp = dataBean.levelUp;
-    playerSkills[_skill][_property] += _levelUp;
+    equipments[_skill][_property] += _levelUp;
 
     if (_property === 'level') {
-      playerSkills[_skill]['attack'] += playerSkills[_skill]['level'] * 1.5;
-    }else if(_property === 'stage'){
-      playerSkills[_skill]['attack'] += playerSkills[_skill]['stage'] * 10;
+      equipments[_skill]['attack'] += equipments[_skill]['level'] * 1.5;
+    } else if (_property === 'stage') {
+      equipments[_skill]['attack'] += equipments[_skill]['stage'] * 10;
     }
 
   }
-
-
 }
+
+
