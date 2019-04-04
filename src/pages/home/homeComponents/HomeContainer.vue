@@ -155,7 +155,7 @@
         }
       },
 
-      changeShowState(e){
+      changeShowState(e) {
         this.floating.floatingShow = false;
       }
 

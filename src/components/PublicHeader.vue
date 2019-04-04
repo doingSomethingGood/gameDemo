@@ -15,7 +15,6 @@
         <span class="resource-number">{{this.playerExp}}</span>
       </div>
     </div>
-
   </div>
 </template>
 

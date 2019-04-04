@@ -66,7 +66,7 @@
          * 这里用来处理怪物死了以后的处理逻辑
          */
 
-        this.hpBarWidth = 250;
+        // this.hpBarWidth = 250;
         this.changeStartAttackFlag(false);
       },
       /**
@@ -79,7 +79,7 @@
          *这里用来写时间结束以后的逻辑处理
          */
 
-        this.timeBarWidth = 250;
+        // this.timeBarWidth = 250;
         this.changeStartAttackFlag(false);
       },
       ...mapMutations(['changeStartAttackFlag'])
