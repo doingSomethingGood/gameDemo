@@ -3,7 +3,7 @@
 > game demo1
 
 ## Build Setup
-
+刚开始学习vue的时候自己开发的小游戏，仅供个人练习使用
 ``` bash
 # install dependencies
 npm install
